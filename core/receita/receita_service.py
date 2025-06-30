@@ -35,6 +35,12 @@ class ReceitaService:
 
     def excluir_receita(self, id):
 
+        receita = self.repository.buscar_por_id(id)
+
+        if not receita:
+
+            raise ValueError("Receita não encontrada.")
+        
         self.repository.remover_por_id(id)
 
 

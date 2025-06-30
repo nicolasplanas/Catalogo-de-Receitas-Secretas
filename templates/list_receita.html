@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Listar Receitas
+Listar Receitas
 {% endblock %}
 
 {% block content %}
@@ -9,8 +9,9 @@
 <hr>
 
 <div class="btn-group mb-3" role="group">
-    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.location.href='{{ url_for('receita') }}'">
-        <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Nova Receita
+    <button type="button" class="btn btn-outline-secondary btn-sm"
+        onclick="window.location.href='{{ url_for('receita') }}'">
+        <i class="fa-solid fa-user-plus"></i>&nbsp;&nbsp;Nova Receita
     </button>
 </div>
 
@@ -32,7 +33,8 @@
                     <a href="{{ url_for('editar_receita', id=receita.id) }}" class="btn btn-warning">
                         <i class="fa-solid fa-pen-to-square"></i> Editar
                     </a>
-                    <a href="{{ url_for('excluir_receita', id=receita.id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta receita?');">
+                    <a href="{{ url_for('excluir_receita', id=receita.id) }}" class="ml-2 btn btn-danger"
+                        onclick="return confirm('Tem certeza que deseja excluir esta receita?');">
                         <i class="fa-solid fa-trash"></i> Excluir
                     </a>
                 </div>
@@ -40,7 +42,7 @@
         </tr>
         {% else %}
         <tr>
-            <td colspan="3" class="text-center">Nenhuma receita encontrada.</td>
+            <td colspan="4" class="text-center">Nenhum categoria encontrado.</td>
         </tr>
         {% endfor %}
     </tbody>

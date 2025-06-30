@@ -28,7 +28,7 @@ class ReceitaRepository:
     def salvar(self, receita: Receita):
 
         cursor = self.conn.cursor()
-        
+
         if receita.id == 0:
 
             cursor.execute("""
@@ -43,6 +43,7 @@ class ReceitaRepository:
                 SET nome_receita=?, ingredientes=?, modo_preparo=?, categoria=?
                 WHERE id=?
             """, (receita.nome_receita, receita.ingredientes, receita.modo_preparo, receita.categoria, receita.id))
+            
         self.conn.commit()
     
 
@@ -50,17 +51,8 @@ class ReceitaRepository:
 
         cursor = self.conn.cursor()
         cursor.execute("SELECT * FROM receitas")
-        rows = cursor.fetchall()
-
-        return [Receita(
-
-            id=row["id"],
-            categoria    = row["categoria"],
-            nome_receita = row["nome_receita"],
-            ingredientes = row["ingredientes"],
-            modo_preparo = row["modo_preparo"],
-
-        ) for row in rows]
+        rows   = cursor.fetchall()
+        return [Receita(**row) for row in rows]
     
 
     def buscar_por_id(self, id):
